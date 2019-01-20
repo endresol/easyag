@@ -7,7 +7,7 @@ module.exports = {
       password: Joi.string().min(8).required(),
     };
 
-    const {error, value} = Joi.validate(req.body, shecma);
+    const { error } = Joi.validate(req.body, shecma);
 
     if (error) {
       switch (error.details[0].context.key) {
@@ -22,9 +22,11 @@ module.exports = {
           });
           break;
         default:
+          res.status(400).send({
+            error: 'Invalid registration information',
+          });
       }
-    }
-    else {
+    } else {
       next();
     }
   },
