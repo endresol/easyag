@@ -3,13 +3,16 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import App from './App';
 import router from './router';
 
 Vue.config.productionTip = false;
 
-Vue.use(Vuetify);
+Vue.use(Vuetify, {
+  iconfont: 'mid', // 'md' || 'mdi' || 'fa' || 'fa4'
+});
 
 /* eslint-disable no-new */
 new Vue({
