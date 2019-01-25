@@ -36,7 +36,9 @@ module.exports = {
           error: 'The login information was incorrect',
         });
       }
+      console.log('pre comapre', password);
       const isPasswordValid = await user.comparePassword(password);
+      console.log('post comp', isPasswordValid);
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect',
