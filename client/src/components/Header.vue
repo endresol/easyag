@@ -8,11 +8,15 @@
     <v-spacer></v-spacer>
 
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        flat
         @click="navigateTo({name: 'register'});">
         Sign up
       </v-btn>
-      <v-btn flat
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        flat
         @click="navigateTo({name: 'login'});">
         Login
       </v-btn>
@@ -23,11 +27,11 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
+    navigateTo(route) {
       this.$router.push(route);
-    }
+    },
   },
-}
+};
 </script>
 
 <style scoped>
