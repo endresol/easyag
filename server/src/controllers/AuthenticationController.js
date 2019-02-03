@@ -13,9 +13,12 @@ module.exports = {
   async register(req, res) {
     try {
       const user = await User.create(req.body);
-      res.send(user.toJSON());
+      const userJson = user.toJSON();
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson),
+      });
     } catch (err) {
-      console.log(err);
       res.status(400).send({
         error: 'E-mail is already registered as a user',
       });
@@ -36,9 +39,7 @@ module.exports = {
           error: 'The login information was incorrect',
         });
       }
-      console.log('pre comapre', password);
       const isPasswordValid = await user.comparePassword(password);
-      console.log('post comp', isPasswordValid);
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect',

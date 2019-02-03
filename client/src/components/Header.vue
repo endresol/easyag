@@ -5,6 +5,13 @@
       @click="navigateTo({name: 'root'});">
       Easy AG
     </v-toolbar-title>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn
+        flat
+        @click="navigateTo({name: 'competitions'});">
+        Competitions
+      </v-btn>
+    </v-toolbar-items>
     <v-spacer></v-spacer>
 
     <v-toolbar-items class="hidden-sm-and-down">

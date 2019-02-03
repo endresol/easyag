@@ -10,13 +10,19 @@
                 <v-card-text>
                 <v-form>
                   <v-text-field
+                    type="text"
+                    name="fullname"
+                    v-model="fullname"
+                    label="Full name"
+                    prepend-icon="person"
+                  />
+                  <v-text-field
                     type="email"
                     name="email"
                     v-model="email"
                     label="E-mail"
                     prepend-icon="email"
                   />
-                  <br />
                   <v-text-field
                     type="password"
                     name="password"
@@ -24,7 +30,6 @@
                     label="Password"
                     prepend-icon="lock"
                   />
-                  <br />
                   <div class="error" v-html="error" />
                 </v-form>
                 </v-card-text>
@@ -45,6 +50,7 @@ import AuthenticationService from '@/services/AuthenticationService';
 export default {
   data() {
     return {
+      fullname: '',
       email: '',
       password: '',
       error: null,
@@ -54,11 +60,13 @@ export default {
     async register() {
       try {
         const response = await AuthenticationService.register({
+          fullname: this.fullname,
           email: this.email,
           password: this.password,
         });
         this.$store.dispatch('setToken', response.data.token);
         this.$store.dispatch('setUser', response.data.user);
+        this.$router.push({ name: 'root' });
       } catch (err) {
         this.error = err.response.data.error;
       }
@@ -69,7 +77,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.error {
-  color:red;
-}
+
 </style>

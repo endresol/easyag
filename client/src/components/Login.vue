@@ -16,7 +16,6 @@
                     label="E-mail"
                     prepend-icon="email"
                   />
-                  <br />
                   <v-text-field
                     type="password"
                     name="password"
@@ -24,7 +23,6 @@
                     label="Password"
                     prepend-icon="lock"
                   />
-                  <br />
                   <div class="error" v-html="error" />
                 </v-form>
                 </v-card-text>
@@ -59,6 +57,7 @@ export default {
         });
         this.$store.dispatch('setToken', response.data.token);
         this.$store.dispatch('setUser', response.data.user);
+        this.$router.push({ name: 'root' });
       } catch (err) {
         this.error = err.response.data.error;
       }
