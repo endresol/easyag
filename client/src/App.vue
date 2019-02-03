@@ -2,7 +2,12 @@
   <div id="app">
     <v-app>
       <page-header />
-      <router-view/>
+      <v-content>
+        <v-container fluid>
+          <router-view></router-view>
+        </v-container>
+      </v-content>
+      <v-footer app></v-footer>
     </v-app>
   </div>
 </template>
